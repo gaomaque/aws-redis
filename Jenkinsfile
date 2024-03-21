@@ -10,7 +10,7 @@ pipeline {
                             choice(
                                 description: "The AWS account where the ElastiCache Redis will be deployed.",
                                 name: 'DeploymentAccount',
-                                choices: ['Please select','NVSGISRSACN','NVSGISRSBCN','NVSGISRSICN','NVSGISRSIDCN','NVSGISRCCCN']
+                                choices: ['NVSGISRSACN','NVSGISRSBCN','NVSGISRSICN','NVSGISRSIDCN','NVSGISRCCCN']
                             ),
                             choice(
                                 description: "Please select the environment.",
@@ -25,14 +25,54 @@ pipeline {
                                 description: "Version compatibility of the Redis engine that will run on your nodes.",
                                 name: 'EngineVersion',
                                 choices: ['4.0.10','5.0.6','6.0','6.2','7.0','7.1'],
-                                defaultValue: '7.1'
                             ),
-                            choice(
-                                description: "Please select the Parameter Group for the Redis. Parameter groups control the runtime properties of your nodes and clusters. Please note you need to select the corresponding version with Engine Version..",
-                                name: 'CacheParameterGroupName',
-                                choices: ['default.redis4.0','default.redis4.0.cluster.on','default.redis5.0','default.redis5.0.cluster.on','default.redis6.x','default.redis6.x.cluster.on','default.redis7','default.redis7.cluster.on'],
-                                defaultValue: 'default.redis7'
-                            ),
+                            [$class: 'CascadeChoiceParameter', 
+                                choiceType: 'PT_SINGLE_SELECT', 
+                                description: 'Please select the Parameter Group for the Redis. Parameter groups control the runtime properties of your nodes and clusters.', 
+                                filterLength: 1, 
+                                filterable: false, 
+                                name: 'CacheParameterGroupName', 
+                                referencedParameters: 'EngineVersion', 
+                                script: [
+                                $class: 'GroovyScript', 
+                                fallbackScript: [
+                                    classpath: [], 
+                                    sandbox: true, 
+                                    script: 
+                                        'return["error"]'
+                                ], 
+                                script: [
+                                    classpath: [], 
+                                    sandbox: true, 
+                                    script: 
+                                        ''' if(EngineVersion.equals("4.0.10"))
+                                            {
+                                                return['default.redis4.0','default.redis4.0.cluster.on']
+                                            }                                             
+                                            else if(EngineVersion.equals("5.0.6")) 
+                                            {
+                                                return['default.redis5.0','default.redis5.0.cluster.on']
+                                            } 
+                                            else if(EngineVersion.equals("6.0")) 
+                                            {
+                                                return['default.redis6.x','default.redis6.x.cluster.on']
+                                            }
+                                            else if(EngineVersion.equals("6.2"))
+                                            {
+                                                return['default.redis6.x','default.redis6.x.cluster.on']
+                                            } 
+                                            else if(EngineVersion.equals("7.0"))
+                                            {
+                                                return['default.redis7','default.redis7.cluster.on']
+                                            }
+                                            else if(EngineVersion.equals("7.1"))
+                                            {
+                                                return['default.redis7','default.redis7.cluster.on']
+                                            }
+                                        '''
+                                ]
+                                ]
+                            ],
                             choice(
                                 description: "Please select the instance type of the Redis nodes.",
                                 name: 'CacheNodeType',
@@ -46,8 +86,12 @@ pipeline {
                             choice(
                                 description: "Replicas per shard. Select the number of replicas for each shard, from 0 to 5.",
                                 name: 'NumReplicas',
-                                choices: ['0','1','2','3','4','5'],
-                                defaultValue: '2'
+                                choices: ['0','1','2','3','4','5']
+                            ),
+                            string(
+                                name: 'SubnetGroupName',
+                                description: "Please specify the Elasticache Subnet group name. By default it is \"DeploymentAccount-vpc-elasticachesubnetgrp\". For example, \"nvsgisrsbcn-vpc-elasticachesubnetgrp\".",
+                                defaultValue: ''
                             ),
                             string(
                                 description: "Please input the KMS Key ARN for encrytion at rest. For example, arn:aws-cn:kms:cn-north-1:988109322633:key/cb1fc7f4-5745-42e1-b6e6-d813c4d0e635.",
@@ -58,15 +102,35 @@ pipeline {
                                 name: 'AuthToken'
                             ),
                             string(
-                                description: "Provide the Accesskey of China RCC GB RRCCCN_AWS_JENKINS Role",
+                                name: 'AppName',
+                                defaultValue: "AWSREDIS"
+                            ),
+                            string(
+                                name: 'ClarityID',
+                                defaultValue: "050520"
+                            ),
+                            string(
+                                name: 'CostCenter',
+                                defaultValue: "20ITG0500R"
+                            ),
+                            string(
+                                name: 'BillingContact',
+                                defaultValue: "DIVOUDE1"
+                            ),
+                            string(
+                                name: 'Owner',
+                                defaultValue: "TIS"
+                            ),
+                            string(
+                                description: "Provide the Accesskey of role who has the access in the deployment account",
                                 name: 'AWSAccessKey'                                
                             ),
                             password(
-                                description: "Provide the Secret Accesskey of China RCC GB RRCCCN_AWS_JENKINS Role",
+                                description: "Provide the Secret Accesskey of role who has the access in the deployment account",
                                 name: 'AWSSecretKey'
                             ),
                             password(
-                                description: "Provide the Session Token of China RCC GB RRCCCN_AWS_JENKINS Role",
+                                description: "Provide the Session Token of role who has the access in the deployment account",
                                 name: 'AWSSessionToken'
                             ),
                             choice(
@@ -84,6 +148,16 @@ pipeline {
                 }
             }
         }
+        stage('Set up environment') {
+            steps {
+                script{
+                    def deploymentAccount = params.DeploymentAccount
+                    def subnetGroupName = "${deploymentAccount}-vpc-elasticachesubnetgrp"
+                    currentBuild.buildVariables.replace(key: 'SubnetGroupName', value: subnetGroupName)
+                    println "SubnetGroupName set to: ${subnetGroupName}"
+                }
+            }
+        }
         stage('Checkout templates') {
             steps {
                     cleanWs()
@@ -97,14 +171,22 @@ pipeline {
                         ]
                     ],
                     branches: [[name: 'feature/CLIN-28025-Redis']],
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'aws-redis']]
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'pucengg_china_shared']]
                 ]
+                script {
+                    sh'''
+                    mv pucengg_china_shared/aws-redis .
+                    rm -rf pucengg_china_shared
+                    '''
+                }
             }
         }        
         stage('Deploy stack') {
             steps {
                     script {
-                        sh "bash deploy_stack.sh"
+                    sh'''
+                        bash deploy_stack.sh
+                    '''
                     }
             }
         }        
