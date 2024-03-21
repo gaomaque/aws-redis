@@ -2,7 +2,7 @@ Started by user Gao, Jun-1
 Obtained Jenkinsfile from git ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git
 [Pipeline] Start of Pipeline
 [Pipeline] node
-Running on Jenkins in /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket
+Running on Jenkins in /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket@2
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Declarative: Checkout SCM)
@@ -10,7 +10,7 @@ Running on Jenkins in /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bi
 Selected Git installation does not exist. Using Default
 The recommended git tool is: NONE
 using credential BitbucketKey
- > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket/.git # timeout=10
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket@2/.git # timeout=10
 Fetching changes from the remote Git repository
  > git config remote.origin.url ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git # timeout=10
 Fetching upstream changes from ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git
@@ -20,11 +20,11 @@ using GIT_SSH to set credentials BitbucketKey
 Verifying host key using known hosts file, will automatically accept unseen keys
  > git fetch --tags --force --progress -- ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git +refs/heads/*:refs/remotes/origin/* # timeout=10
  > git rev-parse refs/remotes/origin/feature/CLIN-28025-ElastiCacheChina^{commit} # timeout=10
-Checking out Revision 5db68ed11df08ba19bc0f329ac7cbe6b1a0313a7 (refs/remotes/origin/feature/CLIN-28025-ElastiCacheChina)
+Checking out Revision 8875774225201316365b2a5c13dfe59e44dc8cb4 (refs/remotes/origin/feature/CLIN-28025-ElastiCacheChina)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 5db68ed11df08ba19bc0f329ac7cbe6b1a0313a7 # timeout=10
-Commit message: "CLIN-28025-ElastiCacheChina fixed a grammer issue"
- > git rev-list --no-walk 1c398ad01a2ed112d4d9eeef4b2b109be15fc3a5 # timeout=10
+ > git checkout -f 8875774225201316365b2a5c13dfe59e44dc8cb4 # timeout=10
+Commit message: "CLIN-28025-ElastiCacheChina updated stage environment"
+ > git rev-list --no-walk 91e35873ab8c2c2337061bcef9dae91f96db31ef # timeout=10
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] withEnv
@@ -34,149 +34,26 @@ Commit message: "CLIN-28025-ElastiCacheChina fixed a grammer issue"
 [Pipeline] script
 [Pipeline] {
 [Pipeline] properties
-WARNING: Unknown parameter(s) found for class type 'hudson.model.ChoiceParameterDefinition': defaultValue
-WARNING: Unknown parameter(s) found for class type 'hudson.model.ChoiceParameterDefinition': defaultValue
-WARNING: Unknown parameter(s) found for class type 'hudson.model.ChoiceParameterDefinition': defaultValue
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Set up environment)
+[Pipeline] script
+[Pipeline] {
 [Pipeline] }
 [Pipeline] // script
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Checkout templates)
-[Pipeline] cleanWs
-[WS-CLEANUP] Deleting project workspace...
-[WS-CLEANUP] Deferred wipeout is used...
-[WS-CLEANUP] done
-[Pipeline] checkout
-Selected Git installation does not exist. Using Default
-The recommended git tool is: NONE
-using credential BitbucketKey
-Cloning the remote Git repository
-Cloning repository ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git
- > git init /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket # timeout=10
-Fetching upstream changes from ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git
- > git --version # timeout=10
- > git --version # 'git version 2.20.1'
-using GIT_SSH to set credentials BitbucketKey
-Verifying host key using known hosts file, will automatically accept unseen keys
- > git fetch --tags --force --progress -- ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git config remote.origin.url ssh://git@bitbucketenterprise.aws.novartis.net/tisp/aws-redis.git # timeout=10
- > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
-Avoid second fetch
- > git rev-parse refs/remotes/origin/feature/CLIN-28025-ElastiCacheChina^{commit} # timeout=10
-Checking out Revision 5db68ed11df08ba19bc0f329ac7cbe6b1a0313a7 (refs/remotes/origin/feature/CLIN-28025-ElastiCacheChina)
- > git config core.sparsecheckout # timeout=10
- > git checkout -f 5db68ed11df08ba19bc0f329ac7cbe6b1a0313a7 # timeout=10
-Commit message: "CLIN-28025-ElastiCacheChina fixed a grammer issue"
-[Pipeline] checkout
-The recommended git tool is: NONE
-using credential BitbucketKey
-Cloning the remote Git repository
-Cloning repository ssh://git@bitbucketenterprise.aws.novartis.net/tispucengg/pucengg_china_shared.git
- > git init /var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket/aws-redis # timeout=10
-Fetching upstream changes from ssh://git@bitbucketenterprise.aws.novartis.net/tispucengg/pucengg_china_shared.git
- > git --version # timeout=10
- > git --version # 'git version 2.20.1'
-using GIT_SSH to set credentials BitbucketKey
-Verifying host key using known hosts file, will automatically accept unseen keys
- > git fetch --tags --force --progress -- ssh://git@bitbucketenterprise.aws.novartis.net/tispucengg/pucengg_china_shared.git +refs/heads/*:refs/remotes/origin/* # timeout=10
- > git config remote.origin.url ssh://git@bitbucketenterprise.aws.novartis.net/tispucengg/pucengg_china_shared.git # timeout=10
- > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
-Avoid second fetch
- > git rev-parse refs/remotes/origin/feature/CLIN-28025-Redis^{commit} # timeout=10
- > git rev-parse feature/CLIN-28025-Redis^{commit} # timeout=10
-Checking out Revision 341c553e4a071c9a12955589547ee7c948bc9a74 (refs/remotes/origin/feature/CLIN-28025-Redis)
- > git config core.sparsecheckout # timeout=10
- > git checkout -f 341c553e4a071c9a12955589547ee7c948bc9a74 # timeout=10
-Commit message: "CLIN-28025-Redis Account details upload"
- > git rev-list --no-walk 341c553e4a071c9a12955589547ee7c948bc9a74 # timeout=10
+Stage "Checkout templates" skipped due to earlier failure(s)
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Deploy stack)
-[Pipeline] script
-[Pipeline] {
-[Pipeline] sh
-+ bash deploy_stack.sh
-+ export AWSEnv=TST
-+ AWSEnv=TST
-+ count=001
-+ ID=001
-+ StackName=-APP-NVSGISRSBCNTST-REDIS-001
-+ export AWS_ACCESS_KEY_ID=ASIA************BPMS
-+ AWS_ACCESS_KEY_ID=ASIA************BPMS
-+ export AWS_SECRET_ACCESS_KEY=ocaS********************************Q1s/
-+ AWS_SECRET_ACCESS_KEY=ocaS********************************Q1s/
-+ export AWS_SESSION_TOKEN=FwoD********/////////wEaDHtiBRvugyG04BnRcCLcAbcV2puW3U9hLQXGKyAwiaKajuqtyrS75kipMONyKZusy4gpsDNYGKCK/iDQZcFww8LEJldOepJxtYKhTT/B9UU6q7P1r0rnYLAkcZW4T4IHfOkji5bDkLio/nJBw0nMR/6v5dHbVKc3K21RuaRGoqwowf1HUvqnk90gRfcGKnqPffBksnRTPUuk0Ez+1Loqnuly1Z0iKWu9ytV9vysg7FatU7LyG2ZLvxq9kuRDg9UvDfOqw2E0d818E44Z4R2HyzEPvXv0wYBIh8XRY23xDYn0G9RaLD5SiF3sGago8rTLrwYyMm9iuv1qWwnH9XBz0SCCfIJTeTq+lCu+8qTc5bxG6/eZxKve+MD+YcKr/K2Tj51NKLc+
-+ AWS_SESSION_TOKEN=FwoDYXdzEJv//////////wEaDHtiBRvugyG04BnRcCLcAbcV2puW3U9hLQXGKyAwiaKajuqtyr************usy4gpsDNYGKCK/iDQZcFww8LEJldOepJxtYKhTT/B9UU6q7P1r0rnYLAkcZ****************io/nJBw0nMR/6v5dHbVKc3K21RuaRGoqwowf1HUvqnk90gRfcGKnqPffBksnRTPUuk0Ez+1Loqnuly1Z0iKWu9ytV9vysg7FatU7LyG2ZLvxq9kuRDg9UvDfOqw2E0d818E44Z4R2HyzEPvXv0wYBIh8XRY23xDYn0G9RaLD5SiF3sGago8rTLrwYyMm9iuv1qWwnH9XBz0SCCfIJTeTq+lCu+8qTc5bxG6/eZxKve+MD+YcKr/K2Tj51NKLc+
-+ aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE --region cn-north-1
-+ grep -i -APP-NVSGISRSBCNTST-REDIS-001 test.stack
-grep: PP-NVSGISRSBCNTST-REDIS-001: invalid context length argument
-+ true
-+ grep -i -APP-NVSGISRSBCNTST-REDIS-001 test.stack
-grep: PP-NVSGISRSBCNTST-REDIS-001: invalid context length argument
-+ retVal=2
-+ '[' 2 -ne 0 ']'
-+ echo -APP-NVSGISRSBCNTST-REDIS-001 ' Stack Name does not exist'
--APP-NVSGISRSBCNTST-REDIS-001  Stack Name does not exist
-+ echo -APP-NVSGISRSBCNTST-REDIS-001
--APP-NVSGISRSBCNTST-REDIS-001
-+ break
-+ :
-+ sed -i 's/$AuthToken/arn:aws-cn:secretsmanager:cn-north-1:988109322633:secret:SCRT-CNBJ-RSBCN-DEV-001-PB97cu/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$CacheNodeType/cache.t4g.micro/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$CacheParameterGroupName/default.redis5.0/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$KmsKeyId/arn:aws-cn:kms:cn-north-1:988109322633:key/cb1fc7f4-5745-42e1-b6e6-d813c4d0e635/g' params.json
-sed: -e expression #1, char 56: unknown option to `s'
-+ sed -i 's/$NumReplicas/0/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$NumShards/1/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$SubnetGroupName//g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$DeploymentAccount/NVSGISRSBCN/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$VpcId//g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$ReplicationGroupDescription/ReplicationGroupDescription1/g' params.json
-sed: can't read params.json: No such file or directory
-+ sed -i 's/$EngineVersion/5.0.6/g' params.json
-sed: can't read params.json: No such file or directory
-+ '[' TST == TST ']'
-+ jq -n '[{"Key": "ClarityID", "Value": ""},{"Key": "Owner", "Value":  ""},{"Key": "CostCenter", "Value": ""},{"Key": "BillingContact", "Value":  ""},{"Key": "Environment", "Value": "TST"},{"Key": "APPType", "Value": "AWSREDIS"}]'
-+ ls -ltr
-total 132
--rw-r--r-- 1 root root  4608 Mar 14 11:07 deploy_stack.sh
--rw-r--r-- 1 root root 81351 Mar 14 11:07 cft-create-update-devgb-automation-cn.py
--rw-r--r-- 1 root root  1027 Mar 14 11:07 Readme.md
--rw-r--r-- 1 root root  7177 Mar 14 11:07 Jenkinsfile
-drwxr-xr-x 2 root root  4096 Mar 14 11:07 aws-redis@tmp
-drwxr-xr-x 5 root root  4096 Mar 14 11:07 aws-redis
--rw-r--r-- 1 root root 19237 Mar 14 11:08 test.stack
--rw-r--r-- 1 root root   310 Mar 14 11:08 tags-tst.json
-+ pwd
-/var/jenkins_home/workspace/CC-IAC-ELASTICACHE-REDIS-CN-Bitbucket
-++ echo NVSGISRSBCN
-++ tr '[:upper:]' '[:lower:]'
-+ account=nvsgisrsbcn
-+ :
-+ export Update=False
-+ Update=False
-+ export AWSEnv=TST
-+ AWSEnv=TST
-+ echo -APP-NVSGISRSBCNTST-REDIS-001
--APP-NVSGISRSBCNTST-REDIS-001
-+ echo 'The Redis creation is in progress '
-The Redis creation is in progress 
-+ echo 'Please wait.......'
-Please wait.......
-deploy_stack.sh: line 158: syntax error near unexpected token `elif'
-deploy_stack.sh: line 158: `elif [ $AWSEnv == "GB" ] then AWSEnv="PRD"'
-[Pipeline] }
-[Pipeline] // script
+Stage "Deploy stack" skipped due to earlier failure(s)
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
@@ -184,5 +61,54 @@ deploy_stack.sh: line 158: `elif [ $AWSEnv == "GB" ] then AWSEnv="PRD"'
 [Pipeline] }
 [Pipeline] // node
 [Pipeline] End of Pipeline
-ERROR: script returned exit code 2
+Also:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: 71aafcf6-a680-47ca-982f-2245d762c99f
+hudson.remoting.ProxyException: groovy.lang.MissingMethodException: No signature of method: java.util.Collections$EmptyMap.replace() is applicable for argument types: (java.util.LinkedHashMap) values: [[key:SubnetGroupName, value:NVSGISRCCCN-vpc-elasticachesubnetgrp]]
+Possible solutions: replace(java.lang.Object, java.lang.Object), replace(java.lang.Object, java.lang.Object, java.lang.Object), replaceAll(java.util.function.BiFunction), remove(java.lang.Object), each(groovy.lang.Closure), each(groovy.lang.Closure)
+	at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:159)
+	at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:178)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:182)
+	at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
+	at WorkflowScript.run(WorkflowScript:156)
+	at ___cps.transform___(Native Method)
+	at com.cloudbees.groovy.cps.impl.ContinuationGroup.methodCall(ContinuationGroup.java:90)
+	at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.dispatchOrArg(FunctionCallBlock.java:116)
+	at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.fixArg(FunctionCallBlock.java:85)
+	at jdk.internal.reflect.GeneratedMethodAccessor126.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
+	at com.cloudbees.groovy.cps.impl.CollectionLiteralBlock$ContinuationImpl.dispatch(CollectionLiteralBlock.java:55)
+	at com.cloudbees.groovy.cps.impl.CollectionLiteralBlock$ContinuationImpl.item(CollectionLiteralBlock.java:45)
+	at jdk.internal.reflect.GeneratedMethodAccessor139.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
+	at com.cloudbees.groovy.cps.impl.LocalVariableBlock$LocalVariable.get(LocalVariableBlock.java:39)
+	at com.cloudbees.groovy.cps.LValueBlock$GetAdapter.receive(LValueBlock.java:30)
+	at com.cloudbees.groovy.cps.impl.LocalVariableBlock.evalLValue(LocalVariableBlock.java:28)
+	at com.cloudbees.groovy.cps.LValueBlock$BlockImpl.eval(LValueBlock.java:55)
+	at com.cloudbees.groovy.cps.LValueBlock.eval(LValueBlock.java:16)
+	at com.cloudbees.groovy.cps.Next.step(Next.java:83)
+	at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:152)
+	at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:146)
+	at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:136)
+	at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:275)
+	at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:146)
+	at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$001(SandboxContinuable.java:18)
+	at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:51)
+	at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:187)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:420)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:330)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:294)
+	at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:67)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:139)
+	at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
+	at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:68)
+	at jenkins.util.ErrorLoggingExecutorService.lambda$wrap$0(ErrorLoggingExecutorService.java:51)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
 Finished: FAILURE
